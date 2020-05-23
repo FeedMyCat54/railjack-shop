@@ -31,7 +31,7 @@ public class CustomerRepository {
     new DeleteCustomerAsyncTask(customerDao).execute(customer);
   }
 
-  public void deleteAllCustomers(Customer customer) {
+  public void deleteAllCustomers() {
     new DeleteAllCustomerAsyncTask(customerDao).execute();
   }
   public LiveData<List<Customer>> getAllCustomers() {
