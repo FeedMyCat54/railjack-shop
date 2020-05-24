@@ -27,5 +27,5 @@ public interface AdministratorDao {
   LiveData<List<Administrator>> getAllAdministrators();
 
   @Query("SELECT * FROM administrator_table WHERE id = :id")
-  Administrator getAdministratorById(long id);
+  Administrator getAdministratorById(int id);
 }
