@@ -33,7 +33,7 @@ public class AdministratorViewModel extends AndroidViewModel {
     repository.deleteAllAdministrators();
   }
 
-  public LiveData<List<Administrator>> getAllCustomers() {
+  public LiveData<List<Administrator>> getAllAdministrators() {
     return allAdministrators;
   }
 }
