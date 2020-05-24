@@ -15,7 +15,7 @@ public class MainActivity extends AppCompatActivity {
     setContentView(R.layout.activity_main);
 
     //References to the ViewModels
-    customerViewModel = new ViewModelProvider(this).get(CustomerViewModel.class);
+    customerViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(CustomerViewModel.class);
 
     //Customer observer
     customerViewModel.getAllCustomers().observe(this, new Observer<List<Customer>>() {
