@@ -27,5 +27,5 @@ public interface CustomerDao {
   LiveData<List<Customer>> getAllCustomers();
 
   @Query("SELECT * FROM customer_table WHERE id = :id")
-  Customer getCustomerById(long id);
+  Customer getCustomerById(int id);
 }

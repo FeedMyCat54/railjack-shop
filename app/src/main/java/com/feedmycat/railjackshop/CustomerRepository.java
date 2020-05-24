@@ -34,8 +34,13 @@ public class CustomerRepository {
   public void deleteAllCustomers() {
     new DeleteAllCustomerAsyncTask(customerDao).execute();
   }
+
   public LiveData<List<Customer>> getAllCustomers() {
     return allCustomers;
+  }
+
+  public Customer getCustomerById(int id) {
+    return customerDao.getCustomerById(id);
   }
 
   //Async tasks so that we run the operations on the background thread
