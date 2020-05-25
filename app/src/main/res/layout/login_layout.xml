@@ -14,7 +14,7 @@
     android:layout_centerHorizontal="true"
     app:srcCompat="@drawable/empyrean_lotus_opened" />
   <EditText
-    android:id="@+id/et_email"
+    android:id="@+id/et_username"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
     android:layout_marginTop="80dp"
@@ -24,13 +24,13 @@
     android:elevation="06dp"
     android:inputType="textEmailAddress"
     android:textColor="#FFFFFF"
-    android:hint="email"
+    android:hint="username"
     android:textColorHint="#FFFFFF"/>
   <EditText
     android:id="@+id/et_password"
     android:layout_width="250dp"
     android:layout_height="wrap_content"
-    android:layout_below="@+id/et_email"
+    android:layout_below="@+id/et_username"
     android:layout_centerHorizontal="true"
     android:layout_marginTop="20dp"
     android:ems="10"
