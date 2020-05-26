@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        if (!username.isEmpty() && !password.isEmpty()) {
+        if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
           if (login(username, password)) {
             Toast.makeText(MainActivity.this, "user exists", Toast.LENGTH_SHORT).show();
             //TODO Start the correct activity for the correct user
