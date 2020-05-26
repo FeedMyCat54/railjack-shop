@@ -34,24 +34,6 @@ public class MainActivity extends AppCompatActivity {
     customerViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(CustomerViewModel.class);
     administratorViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(AdministratorViewModel.class);
 
-    //Customer observer
-    customerViewModel.getAllCustomers().observe(this, new Observer<List<Customer>>() {
-      @Override
-      public void onChanged(List<Customer> customers) {
-        //Update RecyclerView
-        Toast.makeText(MainActivity.this, "Customer", Toast.LENGTH_SHORT).show();
-      }
-    });
-
-    //Administrator observer
-    administratorViewModel.getAllAdministrators().observe(this, new Observer<List<Administrator>>() {
-      @Override
-      public void onChanged(List<Administrator> administrators) {
-        //Update RecyclerView
-        Toast.makeText(MainActivity.this, "Administrator", Toast.LENGTH_SHORT).show();
-      }
-    });
-
     // Start the register activity
     tvRegister.setOnClickListener(new OnClickListener() {
       @Override
