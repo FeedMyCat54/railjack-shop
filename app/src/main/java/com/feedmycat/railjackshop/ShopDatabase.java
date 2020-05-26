@@ -8,12 +8,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
-@Database(entities = {Customer.class, Administrator.class}, version = 1, exportSchema = false)
+@Database(entities = {Customer.class, Administrator.class, Product.class}, version = 1, exportSchema = false)
 public abstract class ShopDatabase extends RoomDatabase {
   private static ShopDatabase instance;
 
   public abstract CustomerDao customerDao();
   public abstract AdministratorDao administratorDao();
+  public abstract ProductDao productDao();
 
   //Returns the database instance
   public static synchronized ShopDatabase getInstance(Context context) {
@@ -41,10 +42,12 @@ public abstract class ShopDatabase extends RoomDatabase {
   private static class PopulateDbAsyncTask extends AsyncTask<Void, Void, Void> {
     private CustomerDao customerDao;
     private AdministratorDao administratorDao;
+    private ProductDao productDao;
 
     public PopulateDbAsyncTask(ShopDatabase db) {
       this.customerDao = db.customerDao();
       this.administratorDao = db.administratorDao();
+      this.productDao = db.productDao();
     }
 
     @Override
@@ -53,6 +56,9 @@ public abstract class ShopDatabase extends RoomDatabase {
       customerDao.insert(new Customer("cus2", "1234", 200));
       customerDao.insert(new Customer("cus3", "1234", 50));
       administratorDao.insert(new Administrator("admin1", "admin"));
+      productDao.insert(new Product("Product1", "manufacturer1", "Stat1", 20, 10));
+      productDao.insert(new Product("Product2", "manufacturer2", "Stat2", 30, 5));
+      productDao.insert(new Product("Product3", "manufacturer3", "Stat3", 45, 40));
       return null;
     }
   }
