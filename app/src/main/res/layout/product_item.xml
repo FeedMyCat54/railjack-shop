@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginEnd="8dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp">
+    
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="8dp"
+        android:background="@drawable/product_card_rectangle">
+
+        <TextView
+            android:id="@+id/tv_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Name"
+            android:textColor="#FFFFFF"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+        <TextView
+            android:id="@+id/tv_stat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_name"
+            android:text="stat"
+            android:textColor="#FFFFFF"
+            />
+
+        <TextView
+            android:id="@+id/tv_price"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:textColor="#FFFFFF"
+            android:text="10 plat"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+        <TextView
+            android:id="@+id/tv_manufacturer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true"
+            android:text="Manufacturer"
+            android:textColor="#FFFFFF"
+            android:textAppearance="@style/TextAppearance.AppCompat.Large"
+            />
+
+        <ImageView
+            android:id="@+id/iv_manufacturer"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_below="@+id/tv_manufacturer"
+            android:layout_centerHorizontal="true"
+            app:srcCompat="@drawable/empyrean_lotus_opened" />
+
+        <ImageButton
+            android:id="@+id/btn_addToCart"
+            android:layout_width="50dp"
+            android:layout_height="30dp"
+            android:layout_below="@+id/tv_price"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/button_rectangle"
+            android:src="@drawable/ic_add_shopping_cart"
+            />
+
+    </RelativeLayout>
+
+</androidx.cardview.widget.CardView>
