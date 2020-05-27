@@ -30,13 +30,20 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         Product currentProduct = products.get(position);
         holder.textViewName.setText(currentProduct.getName());
         holder.textViewStat.setText(currentProduct.getStat());
-        holder.textViewPrice.setText(String.valueOf(currentProduct.getPrice()));
+        holder.textViewPrice.setText(currentProduct.getPrice() + " platinum");
         holder.textViewManufacturer.setText(currentProduct.getManufacturer());
         switch (currentProduct.getManufacturer()) {
-            case "Zetki" : holder.imageViewManufacturer.setImageResource(R.drawable.HouseZetkiGold);
-            case "Vidar" : holder.imageViewManufacturer.setImageResource(R.drawable.HouseVidarGold);
-            case "Lavan" : holder.imageViewManufacturer.setImageResource(R.drawable.HouseLavanGold);
-            default: holder.imageViewManufacturer.setImageResource(R.drawable.empyrean_lotus_opened);
+            case "Zetki" :
+                holder.imageViewManufacturer.setImageResource(R.drawable.house_zetki_gold);
+                break;
+            case "Vidar" :
+                holder.imageViewManufacturer.setImageResource(R.drawable.house_vidar_gold);
+                break;
+            case "Lavan" :
+                holder.imageViewManufacturer.setImageResource(R.drawable.house_lavan_gold);
+                break;
+            default:
+                holder.imageViewManufacturer.setImageResource(R.drawable.empyrean_lotus_opened);
         }
     }
 

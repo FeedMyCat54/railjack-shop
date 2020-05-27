@@ -58,7 +58,7 @@
             android:layout_height="25dp"
             android:layout_below="@+id/tv_manufacturer"
             android:layout_centerHorizontal="true"
-            app:srcCompat="@drawable/HouseZetkiGold" />
+            />
 
         <ImageButton
             android:id="@+id/btn_addToCart"
