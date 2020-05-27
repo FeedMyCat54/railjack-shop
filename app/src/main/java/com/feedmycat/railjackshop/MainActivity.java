@@ -50,28 +50,25 @@ public class MainActivity extends AppCompatActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        if (!username.trim().isEmpty() && !password.trim().isEmpty()) {
-          if (login(username, password)) {
-            Toast.makeText(MainActivity.this, "user exists", Toast.LENGTH_SHORT).show();
-            //TODO Start the correct activity for the correct user
-          } else {
-            Toast.makeText(MainActivity.this, "wrong credentials", Toast.LENGTH_SHORT).show();
-          }
-        } else {
+        if (username.trim().isEmpty() && password.trim().isEmpty()) {
           Toast.makeText(MainActivity.this, "Empty fields are not allowed", Toast.LENGTH_SHORT).show();
+        } else {
+          login(username, password);
         }
       }
     });
   }
 
   // Checks if a user with those credentials exists
-  boolean login(String username, String password) {
+  void login(String username, String password) {
     List<Customer> allCustomers = customerViewModel.getAllCustomers().getValue();
     for (int i = 0; i < allCustomers.size(); i++) {
       if (allCustomers.get(i).getUsername().equals(username) && allCustomers.get(i).getPassword().equals(password)) {
-        return true;
+        Intent intent = new Intent(MainActivity.this, ShopActivity.class);
+        intent.putExtra("EXTRA_CUSTOMER_ID", allCustomers.get(i).getId());
+        return;
       }
     }
-    return false;
+    Toast.makeText(MainActivity.this, "wrong credentials", Toast.LENGTH_SHORT).show();
   }
 }
