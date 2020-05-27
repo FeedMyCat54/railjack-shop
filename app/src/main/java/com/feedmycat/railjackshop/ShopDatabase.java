@@ -56,9 +56,9 @@ public abstract class ShopDatabase extends RoomDatabase {
       customerDao.insert(new Customer("cus2", "1234", 200));
       customerDao.insert(new Customer("cus3", "1234", 50));
       administratorDao.insert(new Administrator("admin1", "admin"));
-      productDao.insert(new Product("Product1", "manufacturer1", "Stat1", 20, 10));
-      productDao.insert(new Product("Product2", "manufacturer2", "Stat2", 30, 5));
-      productDao.insert(new Product("Product3", "manufacturer3", "Stat3", 45, 40));
+      productDao.insert(new Product("Product1", "Zetki", "Stat1", 20, 10));
+      productDao.insert(new Product("Product2", "Vidar", "Stat2", 30, 5));
+      productDao.insert(new Product("Product3", "Lavan", "Stat3", 45, 40));
       return null;
     }
   }
