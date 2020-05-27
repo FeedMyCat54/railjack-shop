@@ -34,6 +34,14 @@ public class MainActivity extends AppCompatActivity {
     customerViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(CustomerViewModel.class);
     administratorViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication()).create(AdministratorViewModel.class);
 
+    //Customer observer
+    customerViewModel.getAllCustomers().observe(this, new Observer<List<Customer>>() {
+      @Override
+      public void onChanged(List<Customer> customers) {
+        Toast.makeText(MainActivity.this, "Customer data", Toast.LENGTH_SHORT).show();
+      }
+    });
+
     // Start the register activity
     tvRegister.setOnClickListener(new OnClickListener() {
       @Override
@@ -50,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         String username = etUsername.getText().toString();
         String password = etPassword.getText().toString();
 
-        if (username.trim().isEmpty() && password.trim().isEmpty()) {
+        if (username.trim().isEmpty() || password.trim().isEmpty()) {
           Toast.makeText(MainActivity.this, "Empty fields are not allowed", Toast.LENGTH_SHORT).show();
         } else {
           login(username, password);
@@ -66,6 +74,8 @@ public class MainActivity extends AppCompatActivity {
       if (allCustomers.get(i).getUsername().equals(username) && allCustomers.get(i).getPassword().equals(password)) {
         Intent intent = new Intent(MainActivity.this, ShopActivity.class);
         intent.putExtra("EXTRA_CUSTOMER_ID", allCustomers.get(i).getId());
+        startActivity(intent);
+        finish();
         return;
       }
     }

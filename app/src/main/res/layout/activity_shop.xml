@@ -7,10 +7,9 @@
     tools:context=".ShopActivity">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/tv_hello"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="HELLO"
         android:textColor="#FFFFFF"
         tools:layout_editor_absoluteX="179dp"
         tools:layout_editor_absoluteY="268dp" />
