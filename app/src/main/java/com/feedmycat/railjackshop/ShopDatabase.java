@@ -8,6 +8,13 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.feedmycat.railjackshop.Entities.Administrator;
+import com.feedmycat.railjackshop.Entities.Customer;
+import com.feedmycat.railjackshop.Entities.Product;
+import com.feedmycat.railjackshop.Daos.AdministratorDao;
+import com.feedmycat.railjackshop.Daos.CustomerDao;
+import com.feedmycat.railjackshop.Daos.ProductDao;
+
 @Database(entities = {Customer.class, Administrator.class, Product.class}, version = 1, exportSchema = false)
 public abstract class ShopDatabase extends RoomDatabase {
   private static ShopDatabase instance;
@@ -56,9 +63,9 @@ public abstract class ShopDatabase extends RoomDatabase {
       customerDao.insert(new Customer("cus2", "1234", 200));
       customerDao.insert(new Customer("cus3", "1234", 50));
       administratorDao.insert(new Administrator("admin1", "admin"));
-      productDao.insert(new Product("Product1", "Zetki", "Stat1", 20, 10));
-      productDao.insert(new Product("Product2", "Vidar", "Stat2", 30, 5));
-      productDao.insert(new Product("Product3", "Lavan", "Stat3", 45, 40));
+      productDao.insert(new Product("Shield Array", "Zetki", "+1500 Shield cap", 50, 10));
+      productDao.insert(new Product("Reactor", "Vidar", "+95 Avionics cap", 90, 5));
+      productDao.insert(new Product("Engines", "Lavan", "+30 m/s", 65, 40));
       return null;
     }
   }

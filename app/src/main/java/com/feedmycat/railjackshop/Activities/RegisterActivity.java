@@ -1,4 +1,4 @@
-package com.feedmycat.railjackshop;
+package com.feedmycat.railjackshop.Activities;
 
 import android.content.Intent;
 import android.view.View;
@@ -10,6 +10,10 @@ import androidx.lifecycle.ViewModelProvider;
 
 import android.os.Bundle;
 import android.widget.Toast;
+
+import com.feedmycat.railjackshop.ViewModels.CustomerViewModel;
+import com.feedmycat.railjackshop.Entities.Customer;
+import com.feedmycat.railjackshop.R;
 
 import java.util.List;
 

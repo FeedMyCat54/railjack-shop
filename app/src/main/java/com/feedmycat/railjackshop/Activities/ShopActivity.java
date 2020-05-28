@@ -1,4 +1,4 @@
-package com.feedmycat.railjackshop;
+package com.feedmycat.railjackshop.Activities;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.Observer;
@@ -7,7 +7,11 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
-import android.widget.TextView;
+
+import com.feedmycat.railjackshop.Entities.Product;
+import com.feedmycat.railjackshop.Adapters.ProductAdapter;
+import com.feedmycat.railjackshop.ViewModels.ProductViewModel;
+import com.feedmycat.railjackshop.R;
 
 import java.util.List;
 

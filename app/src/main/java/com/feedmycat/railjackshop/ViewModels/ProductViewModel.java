@@ -1,9 +1,13 @@
-package com.feedmycat.railjackshop;
+package com.feedmycat.railjackshop.ViewModels;
 
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
+
+import com.feedmycat.railjackshop.Entities.Product;
+import com.feedmycat.railjackshop.Repositories.ProductRepository;
+
 import java.util.List;
 
 public class ProductViewModel extends AndroidViewModel {

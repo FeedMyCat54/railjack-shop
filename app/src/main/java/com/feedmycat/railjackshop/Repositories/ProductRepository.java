@@ -1,8 +1,13 @@
-package com.feedmycat.railjackshop;
+package com.feedmycat.railjackshop.Repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
 import androidx.lifecycle.LiveData;
+
+import com.feedmycat.railjackshop.Entities.Product;
+import com.feedmycat.railjackshop.Daos.ProductDao;
+import com.feedmycat.railjackshop.ShopDatabase;
+
 import java.util.List;
 
 public class ProductRepository {
