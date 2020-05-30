@@ -20,6 +20,6 @@ public interface CartItemDao {
   @Delete
   void delete(CartItem cartItem);
 
- @Query("SELECT * FROM cart_item_table WHERE shoppingCartId=:shoppingCartId")
+  @Query("SELECT * FROM cart_item_table WHERE shoppingCartId=:shoppingCartId")
   List<CartItem> findItemsForCart(final int shoppingCartId);
 }
