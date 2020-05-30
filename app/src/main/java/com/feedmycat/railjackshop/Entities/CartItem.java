@@ -7,7 +7,7 @@ import static androidx.room.ForeignKey.CASCADE;
 
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "cart_items_table", foreignKeys = {
+@Entity(tableName = "cart_item_table", foreignKeys = {
     @ForeignKey(entity = Product.class, parentColumns = "id", childColumns = "productId",
         onDelete = CASCADE, onUpdate = CASCADE),
     @ForeignKey(entity = ShoppingCart.class, parentColumns = "id", childColumns = "shoppingCartId",
