@@ -2,6 +2,7 @@ package com.feedmycat.railjackshop.Repositories;
 
 import android.app.Application;
 import android.os.AsyncTask;
+import androidx.lifecycle.LiveData;
 import com.feedmycat.railjackshop.Daos.CartItemDao;
 import com.feedmycat.railjackshop.Entities.CartItem;
 import com.feedmycat.railjackshop.ShopDatabase;
@@ -30,7 +31,7 @@ public class CartItemRepository {
     new DeleteCartItemAsyncTask(cartItemDao).execute(cartItem);
   }
 
-  public List<CartItem> findItemsForCart(int id) throws ExecutionException, InterruptedException {
+  public LiveData<List<CartItem>> findItemsForCart(int id) throws ExecutionException, InterruptedException {
     return new FindCartItemsAsyncTask(cartItemDao).execute(id).get();
   }
 
@@ -76,7 +77,7 @@ public class CartItemRepository {
     }
   }
 
-  private static class FindCartItemsAsyncTask extends AsyncTask<Integer, Void, List<CartItem>> {
+  private static class FindCartItemsAsyncTask extends AsyncTask<Integer, Void, LiveData<List<CartItem>>> {
     private CartItemDao cartItemDao;
 
     private FindCartItemsAsyncTask(CartItemDao cartItemDao) {
@@ -84,7 +85,7 @@ public class CartItemRepository {
     }
 
     @Override
-    protected List<CartItem> doInBackground(Integer... integers) {
+    protected LiveData<List<CartItem>> doInBackground(Integer... integers) {
       return cartItemDao.findItemsForCart(integers[0]);
     }
   }

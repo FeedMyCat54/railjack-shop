@@ -10,9 +10,14 @@ import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import com.feedmycat.railjackshop.Entities.ShoppingCart;
+import com.feedmycat.railjackshop.Fragments.CartFragment;
 import com.feedmycat.railjackshop.Fragments.ShopFragment;
 import com.feedmycat.railjackshop.R;
+import com.feedmycat.railjackshop.ViewModels.ShoppingCartViewModel;
 import com.google.android.material.navigation.NavigationView;
+import java.util.concurrent.ExecutionException;
 
 public class ShopActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
@@ -21,14 +26,19 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
     NavigationView navigationView;
     FragmentManager fragmentManager;
     FragmentTransaction fragmentTransaction;
+    ShoppingCartViewModel shoppingCartViewModel;
 
     private int customerId;
+    private int cartId;
 
     // Sets up the Drawer, the ActionBar and the default fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_shop);
+
+        shoppingCartViewModel = new ViewModelProvider.AndroidViewModelFactory(getApplication())
+            .create(ShoppingCartViewModel.class);
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -46,6 +56,11 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
         fragmentTransaction = fragmentManager.beginTransaction();
 
         customerId = getIntent().getIntExtra("EXTRA_CUSTOMER_ID", 0);
+        try {
+            cartId = shoppingCartViewModel.findShoppingCartsForUser(customerId).get(0).getId();
+        } catch (ExecutionException | InterruptedException e) {
+            e.getMessage();
+        }
 
         fragmentTransaction.add(R.id.container_fragment, ShopFragment.newInstance(customerId));
         fragmentTransaction.commit();
@@ -62,6 +77,11 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_fragment, ShopFragment.newInstance(customerId));
+            fragmentTransaction.commit();
+        } else if (item.getItemId() == R.id.my_cart) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, CartFragment.newInstance(cartId));
             fragmentTransaction.commit();
         }
         return true;

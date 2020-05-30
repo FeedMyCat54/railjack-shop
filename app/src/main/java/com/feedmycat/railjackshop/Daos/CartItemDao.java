@@ -1,5 +1,6 @@
 package com.feedmycat.railjackshop.Daos;
 
+import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Delete;
 import androidx.room.Insert;
@@ -21,5 +22,5 @@ public interface CartItemDao {
   void delete(CartItem cartItem);
 
   @Query("SELECT * FROM cart_item_table WHERE shoppingCartId=:shoppingCartId")
-  List<CartItem> findItemsForCart(final int shoppingCartId);
+  LiveData<List<CartItem>> findItemsForCart(final int shoppingCartId);
 }

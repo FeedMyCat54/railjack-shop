@@ -3,6 +3,7 @@ package com.feedmycat.railjackshop.ViewModels;
 import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.LiveData;
 import com.feedmycat.railjackshop.Entities.CartItem;
 import com.feedmycat.railjackshop.Repositories.CartItemRepository;
 import java.util.List;
@@ -29,7 +30,7 @@ public class CartItemViewModel extends AndroidViewModel {
     repository.delete(cartItem);
   }
 
-  public List<CartItem> findItemsForCart(int id) throws ExecutionException, InterruptedException {
+  public LiveData<List<CartItem>> findItemsForCart(int id) throws ExecutionException, InterruptedException {
     return repository.findItemsForCart(id);
   }
 }
