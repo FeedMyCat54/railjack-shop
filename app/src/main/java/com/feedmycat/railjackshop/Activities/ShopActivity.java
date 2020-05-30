@@ -26,6 +26,7 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
 
     private int customerId;
 
+    // Sets up the Drawer, the ActionBar and the default fragment
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +34,6 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
 
         toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-
 
         drawerLayout = findViewById(R.id.drawer);
         navigationView = findViewById(R.id.navigationView);
@@ -56,6 +56,7 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
 //        getSupportFragmentManager().beginTransaction().replace(R.id.container, fragment).commit();
     }
 
+    // Checks which item was clicked and loads the correct fragment
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         drawerLayout.closeDrawer(GravityCompat.START);
