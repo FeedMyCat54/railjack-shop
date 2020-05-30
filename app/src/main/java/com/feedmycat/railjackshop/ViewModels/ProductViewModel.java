@@ -9,6 +9,7 @@ import com.feedmycat.railjackshop.Entities.Product;
 import com.feedmycat.railjackshop.Repositories.ProductRepository;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ProductViewModel extends AndroidViewModel {
 
@@ -36,6 +37,10 @@ public class ProductViewModel extends AndroidViewModel {
 
   public void deleteAllProducts() {
     repository.deleteAllProducts();
+  }
+
+  public List<Product> getProductById(int id) throws ExecutionException, InterruptedException {
+    return repository.getProductById(id);
   }
 
   public LiveData<List<Product>> getAllProducts() {

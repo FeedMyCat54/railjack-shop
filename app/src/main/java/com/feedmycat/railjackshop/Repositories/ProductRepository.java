@@ -9,6 +9,7 @@ import com.feedmycat.railjackshop.Daos.ProductDao;
 import com.feedmycat.railjackshop.ShopDatabase;
 
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class ProductRepository {
 
@@ -40,6 +41,10 @@ public class ProductRepository {
 
   public LiveData<List<Product>> getAllProducts() {
     return allProducts;
+  }
+
+  public List<Product> getProductById(int id) throws ExecutionException, InterruptedException {
+    return new GetProductByIdAsyncTask(productDao).execute(id).get();
   }
 
   private static class InsertProductAsyncTask extends AsyncTask<Product, Void, Void> {
@@ -99,6 +104,19 @@ public class ProductRepository {
     protected Void doInBackground(Void... voids) {
       productDao.deleteAllProducts();
       return null;
+    }
+  }
+
+  private static class GetProductByIdAsyncTask extends AsyncTask<Integer, Void, List<Product>> {
+    private ProductDao productDao;
+
+    public GetProductByIdAsyncTask(ProductDao productDao) {
+      this.productDao = productDao;
+    }
+
+    @Override
+    protected List<Product> doInBackground(Integer... integers) {
+      return productDao.getProductById(integers[0]);
     }
   }
 }

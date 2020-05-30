@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RailjackShop</string>
-    <string name="open">open</string>
-    <string name="close">close</string>
+  <string name="app_name">RailjackShop</string>
+  <string name="open">open</string>
+  <string name="close">close</string>
 </resources>
