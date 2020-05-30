@@ -19,26 +19,26 @@ public class ShoppingCartRepository {
 
   // Database operations
   public void insert(ShoppingCart shoppingCart) {
-
+    new InsertShoppingCartAsyncTask(shoppingCartDao).execute(shoppingCart);
   }
 
   public void update(ShoppingCart shoppingCart) {
-
+    new UpdateShoppingCartAsyncTask(shoppingCartDao).execute(shoppingCart);
   }
 
   public void delete(ShoppingCart shoppingCart) {
-
+    new DeleteShoppingCartAsyncTask(shoppingCartDao).execute(shoppingCart);
   }
 
   public List<ShoppingCart> findShoppingCartsForUser(int id)
       throws ExecutionException, InterruptedException {
-    return new findShoppingCartAsyncTask(shoppingCartDao).execute(id).get();
+    return new FindShoppingCartAsyncTask(shoppingCartDao).execute(id).get();
   }
 
-  private static class InsertCustomerAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
+  private static class InsertShoppingCartAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
     private  ShoppingCartDao shoppingCartDao;
 
-    private InsertCustomerAsyncTask(ShoppingCartDao shoppingCartDao) {
+    private InsertShoppingCartAsyncTask(ShoppingCartDao shoppingCartDao) {
       this.shoppingCartDao = shoppingCartDao;
     }
 
@@ -49,10 +49,10 @@ public class ShoppingCartRepository {
     }
   }
 
-  private static class UpdateCustomerAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
+  private static class UpdateShoppingCartAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
     private  ShoppingCartDao shoppingCartDao;
 
-    private UpdateCustomerAsyncTask(ShoppingCartDao shoppingCartDao) {
+    private UpdateShoppingCartAsyncTask(ShoppingCartDao shoppingCartDao) {
       this.shoppingCartDao = shoppingCartDao;
     }
 
@@ -63,10 +63,10 @@ public class ShoppingCartRepository {
     }
   }
 
-  private static class DeleteCustomerAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
+  private static class DeleteShoppingCartAsyncTask extends AsyncTask<ShoppingCart, Void, Void> {
     private  ShoppingCartDao shoppingCartDao;
 
-    private DeleteCustomerAsyncTask(ShoppingCartDao shoppingCartDao) {
+    private DeleteShoppingCartAsyncTask(ShoppingCartDao shoppingCartDao) {
       this.shoppingCartDao = shoppingCartDao;
     }
 
@@ -77,14 +77,13 @@ public class ShoppingCartRepository {
     }
   }
 
-  private static class findShoppingCartAsyncTask extends AsyncTask<Integer, Void, List<ShoppingCart>> {
+  private static class FindShoppingCartAsyncTask extends AsyncTask<Integer, Void, List<ShoppingCart>> {
     private ShoppingCartDao shoppingCartDao;
 
-    private findShoppingCartAsyncTask(ShoppingCartDao shoppingCartDao) {this.shoppingCartDao = shoppingCartDao;}
+    private FindShoppingCartAsyncTask(ShoppingCartDao shoppingCartDao) {this.shoppingCartDao = shoppingCartDao;}
 
     @Override
     protected List<ShoppingCart> doInBackground(Integer... integers) {
-
       return shoppingCartDao.findShoppingCartsForUser(integers[0]);
     }
   }

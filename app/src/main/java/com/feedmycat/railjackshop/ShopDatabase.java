@@ -58,12 +58,14 @@ public abstract class ShopDatabase extends RoomDatabase {
     private AdministratorDao administratorDao;
     private ProductDao productDao;
     private ShoppingCartDao shoppingCartDao;
+    private CartItemDao cartItemDao;
 
     public PopulateDbAsyncTask(ShopDatabase db) {
       this.customerDao = db.customerDao();
       this.administratorDao = db.administratorDao();
       this.productDao = db.productDao();
       this.shoppingCartDao = db.shoppingCartDao();
+      this.cartItemDao = db.cartItemDao();
     }
 
     @Override
