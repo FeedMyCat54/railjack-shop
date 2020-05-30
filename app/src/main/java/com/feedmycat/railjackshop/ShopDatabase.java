@@ -8,20 +8,27 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
+import com.feedmycat.railjackshop.Daos.CartItemDao;
+import com.feedmycat.railjackshop.Daos.ShoppingCartDao;
 import com.feedmycat.railjackshop.Entities.Administrator;
+import com.feedmycat.railjackshop.Entities.CartItem;
 import com.feedmycat.railjackshop.Entities.Customer;
 import com.feedmycat.railjackshop.Entities.Product;
 import com.feedmycat.railjackshop.Daos.AdministratorDao;
 import com.feedmycat.railjackshop.Daos.CustomerDao;
 import com.feedmycat.railjackshop.Daos.ProductDao;
+import com.feedmycat.railjackshop.Entities.ShoppingCart;
 
-@Database(entities = {Customer.class, Administrator.class, Product.class}, version = 1, exportSchema = false)
+@Database(entities = {Customer.class, Administrator.class, Product.class, ShoppingCart.class,
+    CartItem.class}, version = 1, exportSchema = false)
 public abstract class ShopDatabase extends RoomDatabase {
   private static ShopDatabase instance;
 
   public abstract CustomerDao customerDao();
   public abstract AdministratorDao administratorDao();
   public abstract ProductDao productDao();
+  public abstract ShoppingCartDao shoppingCartDao();
+  public abstract CartItemDao cartItemDao();
 
   //Returns the database instance
   public static synchronized ShopDatabase getInstance(Context context) {
@@ -50,11 +57,13 @@ public abstract class ShopDatabase extends RoomDatabase {
     private CustomerDao customerDao;
     private AdministratorDao administratorDao;
     private ProductDao productDao;
+    private ShoppingCartDao shoppingCartDao;
 
     public PopulateDbAsyncTask(ShopDatabase db) {
       this.customerDao = db.customerDao();
       this.administratorDao = db.administratorDao();
       this.productDao = db.productDao();
+      this.shoppingCartDao = db.shoppingCartDao();
     }
 
     @Override
@@ -63,6 +72,9 @@ public abstract class ShopDatabase extends RoomDatabase {
       customerDao.insert(new Customer("cus2", "1234", 200));
       customerDao.insert(new Customer("cus3", "1234", 50));
       administratorDao.insert(new Administrator("admin1", "admin"));
+      shoppingCartDao.insert(new ShoppingCart(1));
+      shoppingCartDao.insert(new ShoppingCart(2));
+      shoppingCartDao.insert(new ShoppingCart(3));
       productDao.insert(new Product("Shield Array", "Zetki", "+1500 Shield cap", 50, 10));
       productDao.insert(new Product("Reactor", "Vidar", "+95 Avionics cap", 90, 5));
       productDao.insert(new Product("Engines", "Lavan", "+30 m/s", 65, 40));
