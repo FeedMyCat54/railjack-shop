@@ -21,4 +21,29 @@ public class CartItem {
   private int quantity;
   private int shoppingCartId;
 
+  public CartItem(int productId, int quantity, int shoppingCartId) {
+    this.productId = productId;
+    this.quantity = quantity;
+    this.shoppingCartId = shoppingCartId;
+  }
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getProductId() {
+    return productId;
+  }
+
+  public int getQuantity() {
+    return quantity;
+  }
+
+  public int getShoppingCartId() {
+    return shoppingCartId;
+  }
 }
