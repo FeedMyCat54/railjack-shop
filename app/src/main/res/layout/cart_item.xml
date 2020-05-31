@@ -62,7 +62,7 @@
       android:layout_alignParentEnd="true"
       android:layout_centerVertical="true"
       android:background="@drawable/button_circle"
-      android:src="@drawable/ic_remove" />
+      android:src="@drawable/ic_remove_shopping_cart" />
 
   </RelativeLayout>
 

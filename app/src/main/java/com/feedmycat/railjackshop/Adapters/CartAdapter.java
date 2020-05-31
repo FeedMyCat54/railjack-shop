@@ -33,7 +33,7 @@ public class CartAdapter extends RecyclerView.Adapter<CartAdapter.ItemHolder> {
     holder.textViewName.setText(currentProduct.getName());
     holder.textViewStat.setText(currentProduct.getStat());
     holder.textViewManufacturer.setText(currentProduct.getManufacturer());
-    holder.textViewQuantity.setText(String.valueOf(currentCartItem.getQuantity()));
+    holder.textViewQuantity.setText(currentCartItem.getQuantity() + " items");
   }
 
   @Override
