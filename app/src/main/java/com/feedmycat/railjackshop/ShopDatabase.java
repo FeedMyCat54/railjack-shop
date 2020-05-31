@@ -9,6 +9,7 @@ import androidx.room.RoomDatabase;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import com.feedmycat.railjackshop.Daos.CartItemDao;
+import com.feedmycat.railjackshop.Daos.SaleDao;
 import com.feedmycat.railjackshop.Daos.ShoppingCartDao;
 import com.feedmycat.railjackshop.Entities.Administrator;
 import com.feedmycat.railjackshop.Entities.CartItem;
@@ -17,10 +18,11 @@ import com.feedmycat.railjackshop.Entities.Product;
 import com.feedmycat.railjackshop.Daos.AdministratorDao;
 import com.feedmycat.railjackshop.Daos.CustomerDao;
 import com.feedmycat.railjackshop.Daos.ProductDao;
+import com.feedmycat.railjackshop.Entities.Sale;
 import com.feedmycat.railjackshop.Entities.ShoppingCart;
 
 @Database(entities = {Customer.class, Administrator.class, Product.class, ShoppingCart.class,
-    CartItem.class}, version = 1, exportSchema = false)
+    CartItem.class, Sale.class}, version = 1, exportSchema = false)
 public abstract class ShopDatabase extends RoomDatabase {
   private static ShopDatabase instance;
 
@@ -29,6 +31,7 @@ public abstract class ShopDatabase extends RoomDatabase {
   public abstract ProductDao productDao();
   public abstract ShoppingCartDao shoppingCartDao();
   public abstract CartItemDao cartItemDao();
+  public abstract SaleDao saleDao();
 
   //Returns the database instance
   public static synchronized ShopDatabase getInstance(Context context) {
