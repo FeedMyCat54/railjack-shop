@@ -55,7 +55,6 @@ public class CartFragment extends Fragment {
         getActivity().getApplication()).create(CartItemViewModel.class);
     productViewModel = new ViewModelProvider.AndroidViewModelFactory(getActivity().getApplication())
         .create(ProductViewModel.class);
-    try {
       cartItemViewModel.findItemsForCart(getArguments().getInt(ARG_CART_ID, 0)).observe(this,
           new Observer<List<CartItem>>() {
             @Override
@@ -72,10 +71,6 @@ public class CartFragment extends Fragment {
               adapter.setCartItemsAndProducts(cartItems, products);
             }
           });
-    } catch (ExecutionException | InterruptedException e) {
-      System.out.println(e.getMessage());
-    }
-
     return v;
   }
 }

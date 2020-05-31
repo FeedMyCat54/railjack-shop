@@ -2,6 +2,7 @@ package com.feedmycat.railjackshop.Adapters;
 
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -18,13 +19,23 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductHolder> {
     private List<Product> products = new ArrayList<>();
+    private OnItemClickListener mListener;
+
+    // Interface to handle clicks on the items
+    public interface OnItemClickListener {
+        void onAddClick(Product product);
+    }
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        mListener = listener;
+    }
 
     @NonNull
     @Override
     public ProductHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.product_item, parent, false);
-        return new ProductHolder(itemView);
+        return new ProductHolder(itemView, mListener);
     }
 
     @Override
@@ -64,7 +75,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
         private ImageView imageViewManufacturer;
         private ImageButton buttonAddToCart;
 
-        public ProductHolder(@NonNull View itemView) {
+        public ProductHolder(@NonNull View itemView, final OnItemClickListener listener) {
             super(itemView);
             textViewName = itemView.findViewById(R.id.tv_name);
             textViewStat = itemView.findViewById(R.id.tv_stat);
@@ -72,6 +83,18 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductH
             textViewManufacturer = itemView.findViewById(R.id.tv_manufacturer);
             imageViewManufacturer = itemView.findViewById(R.id.iv_manufacturer);
             buttonAddToCart = itemView.findViewById(R.id.btn_addToCart);
+
+            buttonAddToCart.setOnClickListener(new OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    if (listener != null) {
+                        int position = getAdapterPosition();
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onAddClick(products.get(position));
+                        }
+                    }
+                }
+            });
         }
     }
 }

@@ -30,7 +30,7 @@ public class CartItemViewModel extends AndroidViewModel {
     repository.delete(cartItem);
   }
 
-  public LiveData<List<CartItem>> findItemsForCart(int id) throws ExecutionException, InterruptedException {
+  public LiveData<List<CartItem>> findItemsForCart(int id){
     return repository.findItemsForCart(id);
   }
 }

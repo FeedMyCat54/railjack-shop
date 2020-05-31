@@ -11,6 +11,7 @@ import java.util.concurrent.ExecutionException;
 
 public class CartItemRepository {
   private CartItemDao cartItemDao;
+  private LiveData<List<CartItem>> cartItems;
 
   public CartItemRepository(Application application) {
     ShopDatabase database = ShopDatabase.getInstance(application);
@@ -31,8 +32,13 @@ public class CartItemRepository {
     new DeleteCartItemAsyncTask(cartItemDao).execute(cartItem);
   }
 
-  public LiveData<List<CartItem>> findItemsForCart(int id) throws ExecutionException, InterruptedException {
+  /*public LiveData<List<CartItem>> findItemsForCart(int id) throws ExecutionException, InterruptedException {
     return new FindCartItemsAsyncTask(cartItemDao).execute(id).get();
+  }*/
+
+  public LiveData<List<CartItem>> findItemsForCart(int id) {
+    return cartItemDao.findItemsForCart(id);
+
   }
 
   private static class InsertCartItemAsyncTask extends AsyncTask<CartItem, Void, Void> {
