@@ -83,6 +83,10 @@ public abstract class ShopDatabase extends RoomDatabase {
       productDao.insert(new Product("Shield Array", "Zetki", "+1500 Shield cap", 50, 10));
       productDao.insert(new Product("Reactor", "Vidar", "+95 Avionics cap", 90, 5));
       productDao.insert(new Product("Engines", "Lavan", "+30 m/s", 65, 40));
+      productDao.insert(new Product("Reactor", "Zetki", "+55 Avionics cap", 20, 2));
+      productDao.insert(new Product("Shield Array", "Vidar", "+900 Shield cap", 40, 4));
+      productDao.insert(new Product("Reactor", "Lavan", "+40 Avionics cap", 35, 3));
+      productDao.insert(new Product("Engines", "Zetki", "+19 m/s", 50, 20));
       cartItemDao.insert(new CartItem(1, 2, 1));
       cartItemDao.insert(new CartItem(2, 3, 1));
       return null;
