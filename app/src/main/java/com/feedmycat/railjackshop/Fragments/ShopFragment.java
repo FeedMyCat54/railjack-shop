@@ -3,6 +3,7 @@ package com.feedmycat.railjackshop.Fragments;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import androidx.annotation.NonNull;
@@ -15,11 +16,14 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.feedmycat.railjackshop.Adapters.ProductAdapter;
 import com.feedmycat.railjackshop.Adapters.ProductAdapter.OnItemClickListener;
 import com.feedmycat.railjackshop.Entities.CartItem;
+import com.feedmycat.railjackshop.Entities.Customer;
 import com.feedmycat.railjackshop.Entities.Product;
 import com.feedmycat.railjackshop.R;
 import com.feedmycat.railjackshop.ViewModels.CartItemViewModel;
+import com.feedmycat.railjackshop.ViewModels.CustomerViewModel;
 import com.feedmycat.railjackshop.ViewModels.ProductViewModel;
 import com.feedmycat.railjackshop.ViewModels.ShoppingCartViewModel;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
@@ -29,10 +33,13 @@ public class ShopFragment extends Fragment {
 
   private int cartId;
   private List<CartItem> cartItemList;
+  private List<Customer> allCustomers;
 
   private ProductViewModel productViewModel;
   private ShoppingCartViewModel shoppingCartViewModel;
   private CartItemViewModel cartItemViewModel;
+  private CustomerViewModel customerViewModel;
+
   private ProductAdapter adapter;
 
   // Factory method for the Shop fragment
@@ -93,6 +100,23 @@ public class ShopFragment extends Fragment {
         putItemInCart(product);
       }
     });
+
+    customerViewModel = new ViewModelProvider.AndroidViewModelFactory(
+        getActivity().getApplication()).create(CustomerViewModel.class);
+    customerViewModel.getAllCustomers().observe(this, new Observer<List<Customer>>() {
+      @Override
+      public void onChanged(List<Customer> customers) {
+        allCustomers = customers;
+      }
+    });
+
+    FloatingActionButton fabAddCurrency = v.findViewById(R.id.fab_add_currency);
+    fabAddCurrency.setOnClickListener(new OnClickListener() {
+      @Override
+      public void onClick(View v) {
+        addCurrency(100);
+      }
+    });
     return v;
   }
 
@@ -129,5 +153,16 @@ public class ShopFragment extends Fragment {
         cartItem.getShoppingCartId());
     newCartItem.setId(cartItem.getId());
     cartItemViewModel.update(newCartItem);
+  }
+
+  // Add an amount to the user's currency
+  private void addCurrency(int amount) {
+    for (Customer customer : allCustomers) {
+      if (customer.getId() == getArguments().getInt(ARG_CUSTOMER_ID, 0)) {
+        Customer newCustomer = new Customer(customer.getUsername(), customer.getPassword(), customer.getBalance() + amount);
+        newCustomer.setId(customer.getId());
+        customerViewModel.update(newCustomer);
+      }
+    }
   }
 }
