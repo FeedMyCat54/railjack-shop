@@ -13,6 +13,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.ViewModelProvider;
 import com.feedmycat.railjackshop.Entities.ShoppingCart;
 import com.feedmycat.railjackshop.Fragments.CartFragment;
+import com.feedmycat.railjackshop.Fragments.SalesFragment;
 import com.feedmycat.railjackshop.Fragments.ShopFragment;
 import com.feedmycat.railjackshop.Fragments.UsersFragment;
 import com.feedmycat.railjackshop.R;
@@ -88,6 +89,12 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_fragment, UsersFragment
+                .newInstance());
+            fragmentTransaction.commit();
+        } else if (item.getItemId() == R.id.sales) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, SalesFragment
                 .newInstance());
             fragmentTransaction.commit();
         }

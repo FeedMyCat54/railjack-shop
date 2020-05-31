@@ -22,15 +22,15 @@ public class SaleRepository {
 
   // Database operation
   public void insert(Sale sale) {
-
+    new InsertSaleAsyncTask(saleDao).execute(sale);
   }
 
   public void update(Sale sale) {
-
+    new UpdateSaleAsyncTask(saleDao).execute(sale);
   }
 
   public void delete(Sale sale) {
-
+    new DeleteSaleAsyncTask(saleDao).execute(sale);
   }
 
   public LiveData<List<Sale>> getAllSales() {
