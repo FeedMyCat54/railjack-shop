@@ -81,7 +81,7 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
         } else if (item.getItemId() == R.id.my_cart) {
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.container_fragment, CartFragment.newInstance(cartId));
+            fragmentTransaction.replace(R.id.container_fragment, CartFragment.newInstance(customerId ,cartId));
             fragmentTransaction.commit();
         }
         return true;

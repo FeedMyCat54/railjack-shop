@@ -99,6 +99,7 @@ public class ShopFragment extends Fragment {
   // Puts an item in the user's cart if the items are in stock
   private void putItemInCart(Product product) {
     if (product.getQuantity() > 0) {
+      Toast.makeText(getActivity(), "Added 1x" + product.getName() + " in cart", Toast.LENGTH_SHORT).show();
       for (CartItem cartItem : cartItemList
       ) {
         if (cartItem.getProductId() == product.getId()) {

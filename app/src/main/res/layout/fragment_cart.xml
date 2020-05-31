@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
-  tools:context=".Fragments.CartFragment">
+  tools:context=".Fragments.CartFragment"
+  android:orientation="vertical">
 
   <androidx.recyclerview.widget.RecyclerView
     android:id="@+id/rv_cart"
@@ -11,4 +12,12 @@
     android:layout_height="match_parent"
     tools:listitem="@layout/cart_item"/>
 
-</LinearLayout>
+  <com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/fab_buy_cart"
+    android:layout_width="55dp"
+    android:layout_height="55dp"
+    android:src="@drawable/ic_done"
+    android:layout_gravity="bottom|end"
+    android:layout_margin="35dp"/>
+
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

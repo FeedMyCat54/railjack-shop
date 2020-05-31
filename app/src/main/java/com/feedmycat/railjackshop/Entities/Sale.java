@@ -9,18 +9,18 @@ import androidx.room.PrimaryKey;
 @Entity(tableName = "sale_table", foreignKeys = {
     @ForeignKey(entity = Customer.class, parentColumns = "id", childColumns = "userId",
         onDelete = CASCADE, onUpdate = CASCADE),
-    @ForeignKey(entity = CartItem.class, parentColumns = "id", childColumns = "itemId",
+    @ForeignKey(entity = Product.class, parentColumns = "id", childColumns = "productId",
         onDelete = CASCADE, onUpdate = CASCADE)})
 public class Sale {
 
   @PrimaryKey(autoGenerate = true)
   private int id;
   private int userId;
-  private int itemId;
+  private int productId;
 
-  public Sale(int userId, int itemId) {
+  public Sale(int userId, int productId) {
     this.userId = userId;
-    this.itemId = itemId;
+    this.productId = productId;
   }
 
   public int getId() {
@@ -35,7 +35,7 @@ public class Sale {
     return userId;
   }
 
-  public int getItemId() {
-    return itemId;
+  public int getProductId() {
+    return productId;
   }
 }
