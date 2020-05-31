@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.feedmycat.railjackshop.Entities.ShoppingCart;
 import com.feedmycat.railjackshop.Fragments.CartFragment;
 import com.feedmycat.railjackshop.Fragments.ShopFragment;
+import com.feedmycat.railjackshop.Fragments.UsersFragment;
 import com.feedmycat.railjackshop.R;
 import com.feedmycat.railjackshop.ViewModels.ShoppingCartViewModel;
 import com.google.android.material.navigation.NavigationView;
@@ -82,6 +83,12 @@ public class ShopActivity extends AppCompatActivity implements NavigationView.On
             fragmentManager = getSupportFragmentManager();
             fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.container_fragment, CartFragment.newInstance(customerId ,cartId));
+            fragmentTransaction.commit();
+        } else if (item.getItemId() == R.id.about) {
+            fragmentManager = getSupportFragmentManager();
+            fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.container_fragment, UsersFragment
+                .newInstance());
             fragmentTransaction.commit();
         }
         return true;

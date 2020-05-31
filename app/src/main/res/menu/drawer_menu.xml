@@ -12,5 +12,8 @@
     <item
         android:id="@+id/about"
         android:icon="@drawable/ic_info_outline"
-        android:title="About" />
+        android:title="Users" />
+    <item android:id="@+id/sales"
+        android:icon="@drawable/ic_info_outline"
+        android:title="Sales"/>
 </menu>
